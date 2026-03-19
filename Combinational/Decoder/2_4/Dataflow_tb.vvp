@@ -1,0 +1,100 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_012487F0 .scope module, "Dataflow_tb" "Dataflow_tb" 2 1;
+ .timescale 0 0;
+v0110FB30_0 .var "EN", 0 0;
+v0110FB88_0 .var "I", 1 0;
+v01110760_0 .net "Y", 3 0, L_01110238; 1 drivers
+S_01248878 .scope module, "uut" "Dataflow" 2 5, 3 1, S_012487F0;
+ .timescale 0 0;
+L_01243FD8 .functor AND 1, v0110FB30_0, L_01110188, C4<1>, C4<1>;
+L_01243138 .functor AND 1, L_01243FD8, L_011104F8, C4<1>, C4<1>;
+L_01243FA0 .functor AND 1, v0110FB30_0, L_01110708, C4<1>, C4<1>;
+L_01111148 .functor NOT 1, L_011106B0, C4<0>, C4<0>, C4<0>;
+L_011113E8 .functor AND 1, L_01243FA0, L_01111148, C4<1>, C4<1>;
+L_011110D8 .functor NOT 1, L_011107B8, C4<0>, C4<0>, C4<0>;
+L_011113B0 .functor AND 1, v0110FB30_0, L_011110D8, C4<1>, C4<1>;
+L_01111420 .functor AND 1, L_011113B0, L_011100D8, C4<1>, C4<1>;
+L_01111180 .functor NOT 1, L_01110810, C4<0>, C4<0>, C4<0>;
+L_01111308 .functor AND 1, v0110FB30_0, L_01111180, C4<1>, C4<1>;
+L_01111228 .functor NOT 1, L_01110A78, C4<0>, C4<0>, C4<0>;
+L_011350A0 .functor AND 1, L_01111308, L_01111228, C4<1>, C4<1>;
+v01249E08_0 .net "EN", 0 0, v0110FB30_0; 1 drivers
+v01249E60_0 .net "I", 1 0, v0110FB88_0; 1 drivers
+v01249EB8_0 .alias "Y", 3 0, v01110760_0;
+v0110FA28_0 .net *"_s1", 0 0, L_01110188; 1 drivers
+v0110F920_0 .net *"_s10", 0 0, L_01243FA0; 1 drivers
+v0110FA80_0 .net *"_s13", 0 0, L_011106B0; 1 drivers
+v0110FC38_0 .net *"_s14", 0 0, L_01111148; 1 drivers
+v0110FC90_0 .net *"_s16", 0 0, L_011113E8; 1 drivers
+v0110FDF0_0 .net *"_s19", 0 0, L_011107B8; 1 drivers
+v0110FD98_0 .net *"_s2", 0 0, L_01243FD8; 1 drivers
+v0110FE48_0 .net *"_s20", 0 0, L_011110D8; 1 drivers
+v0110FEA0_0 .net *"_s22", 0 0, L_011113B0; 1 drivers
+v0110FEF8_0 .net *"_s25", 0 0, L_011100D8; 1 drivers
+v0110FD40_0 .net *"_s26", 0 0, L_01111420; 1 drivers
+v0110FCE8_0 .net *"_s29", 0 0, L_01110810; 1 drivers
+v0110FBE0_0 .net *"_s30", 0 0, L_01111180; 1 drivers
+v0110F978_0 .net *"_s32", 0 0, L_01111308; 1 drivers
+v0110F8C8_0 .net *"_s35", 0 0, L_01110A78; 1 drivers
+v0110FF50_0 .net *"_s36", 0 0, L_01111228; 1 drivers
+v0110FFA8_0 .net *"_s38", 0 0, L_011350A0; 1 drivers
+v01110000_0 .net *"_s5", 0 0, L_011104F8; 1 drivers
+v0110FAD8_0 .net *"_s6", 0 0, L_01243138; 1 drivers
+v0110F9D0_0 .net *"_s9", 0 0, L_01110708; 1 drivers
+L_01110188 .part v0110FB88_0, 1, 1;
+L_011104F8 .part v0110FB88_0, 0, 1;
+L_01110708 .part v0110FB88_0, 1, 1;
+L_011106B0 .part v0110FB88_0, 0, 1;
+L_011107B8 .part v0110FB88_0, 1, 1;
+L_011100D8 .part v0110FB88_0, 0, 1;
+L_01110810 .part v0110FB88_0, 1, 1;
+L_01110A78 .part v0110FB88_0, 0, 1;
+L_01110238 .concat [ 1 1 1 1], L_011350A0, L_01111420, L_011113E8, L_01243138;
+    .scope S_012487F0;
+T_0 ;
+    %vpi_call 2 7 "$dumpfile", "Dataflow.vcd";
+    %vpi_call 2 8 "$dumpvars", 1'sb0, S_012487F0;
+    %vpi_call 2 10 "$monitor", "I=%b EN=%b Y=%b", v0110FB88_0, v0110FB30_0, v01110760_0;
+    %delay 0, 0;
+    %set/v v0110FB88_0, 0, 2;
+    %set/v v0110FB30_0, 1, 1;
+    %delay 10, 0;
+    %movi 8, 1, 2;
+    %set/v v0110FB88_0, 8, 2;
+    %set/v v0110FB30_0, 1, 1;
+    %delay 10, 0;
+    %movi 8, 2, 2;
+    %set/v v0110FB88_0, 8, 2;
+    %set/v v0110FB30_0, 1, 1;
+    %delay 10, 0;
+    %set/v v0110FB88_0, 1, 2;
+    %set/v v0110FB30_0, 1, 1;
+    %delay 10, 0;
+    %set/v v0110FB88_0, 0, 2;
+    %set/v v0110FB30_0, 0, 1;
+    %delay 10, 0;
+    %movi 8, 1, 2;
+    %set/v v0110FB88_0, 8, 2;
+    %set/v v0110FB30_0, 0, 1;
+    %delay 10, 0;
+    %movi 8, 2, 2;
+    %set/v v0110FB88_0, 8, 2;
+    %set/v v0110FB30_0, 0, 1;
+    %delay 10, 0;
+    %set/v v0110FB88_0, 1, 2;
+    %set/v v0110FB30_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 19 "$finish";
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "Dataflow_tb.v";
+    "Dataflow.v";

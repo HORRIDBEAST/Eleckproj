@@ -1,0 +1,83 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 9;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_012028E0 .scope module, "FullAdder_tb" "FullAdder_tb" 2 3;
+ .timescale -9 -9;
+v01210DD0_0 .var "a", 0 0;
+v01210958_0 .var "b", 0 0;
+v012107A0_0 .var "cin", 0 0;
+v01210C18_0 .net "cout", 0 0, L_01213A88; 1 drivers
+v012107F8_0 .net "sum", 0 0, L_01213B30; 1 drivers
+S_01202D20 .scope module, "uut" "FullAdder" 2 15, 3 1, S_012028E0;
+ .timescale -9 -9;
+L_01213938 .functor XOR 1, v01210DD0_0, v01210958_0, C4<0>, C4<0>;
+L_01213B30 .functor XOR 1, L_01213938, v012107A0_0, C4<0>, C4<0>;
+L_01213BA0 .functor AND 1, v01210DD0_0, v01210958_0, C4<1>, C4<1>;
+L_01213A50 .functor AND 1, v01210958_0, v012107A0_0, C4<1>, C4<1>;
+L_012139E0 .functor AND 1, v012107A0_0, v01210DD0_0, C4<1>, C4<1>;
+L_01213A88 .functor OR 1, L_01213BA0, L_01213A50, L_012139E0, C4<0>;
+v00A33118_0 .net "N1", 0 0, L_01213938; 1 drivers
+v00A33170_0 .net "N2", 0 0, L_01213BA0; 1 drivers
+v00A331C8_0 .net "N3", 0 0, L_01213A50; 1 drivers
+v01213780_0 .net "N4", 0 0, L_012139E0; 1 drivers
+v012137D8_0 .net "a", 0 0, v01210DD0_0; 1 drivers
+v01210B68_0 .net "b", 0 0, v01210958_0; 1 drivers
+v01210BC0_0 .net "cin", 0 0, v012107A0_0; 1 drivers
+v01210900_0 .alias "cout", 0 0, v01210C18_0;
+v01210C70_0 .alias "sum", 0 0, v012107F8_0;
+    .scope S_012028E0;
+T_0 ;
+    %vpi_call 2 26 "$dumpfile", "FullAdder_tb.vcd";
+    %vpi_call 2 27 "$dumpvars", 1'sb0, S_012028E0;
+    %set/v v01210DD0_0, 0, 1;
+    %set/v v01210958_0, 0, 1;
+    %set/v v012107A0_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 32 "$display", "a = %b, b = %b, cin = %b, cout = %b, sum = %b", v01210DD0_0, v01210958_0, v012107A0_0, v01210C18_0, v012107F8_0;
+    %set/v v01210DD0_0, 0, 1;
+    %set/v v01210958_0, 0, 1;
+    %set/v v012107A0_0, 1, 1;
+    %delay 10, 0;
+    %vpi_call 2 37 "$display", "a = %b, b = %b, cin = %b, cout = %b, sum = %b", v01210DD0_0, v01210958_0, v012107A0_0, v01210C18_0, v012107F8_0;
+    %set/v v01210DD0_0, 0, 1;
+    %set/v v01210958_0, 1, 1;
+    %set/v v012107A0_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 42 "$display", "a = %b, b = %b, cin = %b, cout = %b, sum = %b", v01210DD0_0, v01210958_0, v012107A0_0, v01210C18_0, v012107F8_0;
+    %set/v v01210DD0_0, 0, 1;
+    %set/v v01210958_0, 1, 1;
+    %set/v v012107A0_0, 1, 1;
+    %delay 10, 0;
+    %vpi_call 2 47 "$display", "a = %b, b = %b, cin = %b, cout = %b, sum = %b", v01210DD0_0, v01210958_0, v012107A0_0, v01210C18_0, v012107F8_0;
+    %set/v v01210DD0_0, 1, 1;
+    %set/v v01210958_0, 0, 1;
+    %set/v v012107A0_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 52 "$display", "a = %b, b = %b, cin = %b, cout = %b, sum = %b", v01210DD0_0, v01210958_0, v012107A0_0, v01210C18_0, v012107F8_0;
+    %set/v v01210DD0_0, 1, 1;
+    %set/v v01210958_0, 0, 1;
+    %set/v v012107A0_0, 1, 1;
+    %delay 10, 0;
+    %vpi_call 2 57 "$display", "a = %b, b = %b, cin = %b, cout = %b, sum = %b", v01210DD0_0, v01210958_0, v012107A0_0, v01210C18_0, v012107F8_0;
+    %set/v v01210DD0_0, 1, 1;
+    %set/v v01210958_0, 1, 1;
+    %set/v v012107A0_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 62 "$display", "a = %b, b = %b, cin = %b, cout = %b, sum = %b", v01210DD0_0, v01210958_0, v012107A0_0, v01210C18_0, v012107F8_0;
+    %set/v v01210DD0_0, 1, 1;
+    %set/v v01210958_0, 1, 1;
+    %set/v v012107A0_0, 1, 1;
+    %delay 10, 0;
+    %vpi_call 2 67 "$display", "a = %b, b = %b, cin = %b, cout = %b, sum = %b", v01210DD0_0, v01210958_0, v012107A0_0, v01210C18_0, v012107F8_0;
+    %vpi_call 2 70 "$finish";
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "FullAdder_tb.v";
+    "FullAdder.v";

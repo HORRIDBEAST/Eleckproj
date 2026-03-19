@@ -1,0 +1,76 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 12;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_011142B0 .scope module, "Counter_Modulus47_up_tb" "Counter_Modulus47_up_tb" 2 3;
+ .timescale -9 -12;
+v0111EE78_0 .var "clk", 0 0;
+v0111EED0_0 .net "count", 7 0, v01113288_0; 1 drivers
+v0111EF28_0 .var "data", 7 0;
+v0111EF80_0 .var "rst", 0 0;
+S_01114338 .scope module, "uut" "Counter_Modulus47_up" 2 9, 3 1, S_011142B0;
+ .timescale 0 0;
+v01118538_0 .net "clk", 0 0, v0111EE78_0; 1 drivers
+v01113230_0 .alias "count", 7 0, v0111EED0_0;
+v01113288_0 .var "count_tmp", 7 0;
+v011132E0_0 .net "data", 7 0, v0111EF28_0; 1 drivers
+v0111EE20_0 .net "rst", 0 0, v0111EF80_0; 1 drivers
+E_01151E30 .event posedge, v01118538_0;
+    .scope S_01114338;
+T_0 ;
+    %wait E_01151E30;
+    %load/v 8, v0111EE20_0, 1;
+    %inv 8, 1;
+    %movi 9, 46, 8;
+    %load/v 17, v01113288_0, 8;
+    %cmp/u 9, 17, 8;
+    %or 5, 4, 1;
+    %or 8, 5, 1;
+    %jmp/0xz  T_0.0, 8;
+    %ix/load 0, 8, 0;
+    %assign/v0 v01113288_0, 0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/v 8, v01113288_0, 8;
+    %mov 16, 0, 24;
+    %addi 8, 1, 32;
+    %ix/load 0, 8, 0;
+    %assign/v0 v01113288_0, 0, 8;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_011142B0;
+T_1 ;
+    %delay 5000, 0;
+    %load/v 8, v0111EE78_0, 1;
+    %inv 8, 1;
+    %set/v v0111EE78_0, 8, 1;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_011142B0;
+T_2 ;
+    %vpi_call 2 20 "$dumpfile", "Counter_Modulus47_up_tb.vcd";
+    %vpi_call 2 21 "$dumpvars", 1'sb0, S_011142B0;
+    %vpi_call 2 22 "$monitor", "Time=%0t | Reset=%b | Count=%d", $time, v0111EF80_0, v0111EED0_0;
+    %set/v v0111EE78_0, 0, 1;
+    %set/v v0111EF80_0, 0, 1;
+    %set/v v0111EF28_0, 0, 8;
+    %delay 10000, 0;
+    %set/v v0111EF80_0, 1, 1;
+    %delay 500000, 0;
+    %delay 10000, 0;
+    %set/v v0111EF80_0, 0, 1;
+    %delay 10000, 0;
+    %set/v v0111EF80_0, 1, 1;
+    %delay 200000, 0;
+    %vpi_call 2 37 "$finish";
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "Modulus_tb.v";
+    "Modulus.v";

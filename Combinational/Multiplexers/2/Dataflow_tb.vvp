@@ -1,0 +1,61 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 9;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_012B3130 .scope module, "Dataflow_tb" "Dataflow_tb" 2 3;
+ .timescale -9 -9;
+v01163BC8_0 .var "I", 1 0;
+v01163C20_0 .var "S", 0 0;
+v01163C78_0 .net "Y", 0 0, L_012BE158; 1 drivers
+S_012B31B8 .scope module, "uut" "Dataflow" 2 10, 3 1, S_012B3130;
+ .timescale 0 0;
+v012B3670_0 .net "I", 1 0, v01163BC8_0; 1 drivers
+v012B36C8_0 .net "S", 0 0, v01163C20_0; 1 drivers
+v012B3720_0 .alias "Y", 0 0, v01163C78_0;
+v012B3778_0 .net *"_s1", 0 0, L_012BE0A8; 1 drivers
+v01163B70_0 .net *"_s3", 0 0, L_012BE100; 1 drivers
+L_012BE0A8 .part v01163BC8_0, 1, 1;
+L_012BE100 .part v01163BC8_0, 0, 1;
+L_012BE158 .functor MUXZ 1, L_012BE100, L_012BE0A8, v01163C20_0, C4<>;
+    .scope S_012B3130;
+T_0 ;
+    %vpi_call 2 13 "$monitor", "I=%b S=%b Y=%b", v01163BC8_0, v01163C20_0, v01163C78_0;
+    %delay 10, 0;
+    %set/v v01163BC8_0, 0, 2;
+    %set/v v01163C20_0, 0, 1;
+    %delay 10, 0;
+    %movi 8, 1, 2;
+    %set/v v01163BC8_0, 8, 2;
+    %set/v v01163C20_0, 0, 1;
+    %delay 10, 0;
+    %movi 8, 2, 2;
+    %set/v v01163BC8_0, 8, 2;
+    %set/v v01163C20_0, 0, 1;
+    %delay 10, 0;
+    %set/v v01163BC8_0, 1, 2;
+    %set/v v01163C20_0, 0, 1;
+    %delay 10, 0;
+    %set/v v01163BC8_0, 0, 2;
+    %set/v v01163C20_0, 1, 1;
+    %delay 10, 0;
+    %movi 8, 1, 2;
+    %set/v v01163BC8_0, 8, 2;
+    %set/v v01163C20_0, 1, 1;
+    %delay 10, 0;
+    %movi 8, 2, 2;
+    %set/v v01163BC8_0, 8, 2;
+    %set/v v01163C20_0, 1, 1;
+    %delay 10, 0;
+    %set/v v01163BC8_0, 1, 2;
+    %set/v v01163C20_0, 1, 1;
+    %vpi_call 2 24 "$finish";
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "Dataflow_tb.v";
+    "Dataflow.v";

@@ -1,0 +1,149 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 12;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0121D898 .scope module, "tb_counter_10_to_40_up__down" "tb_counter_10_to_40_up__down" 2 3;
+ .timescale -9 -12;
+v012504D8_0 .var "clock", 0 0;
+v01250588_0 .net "count", 7 0, v01250530_0; 1 drivers
+v01250950_0 .var "data", 7 0;
+v012505E0_0 .var "load", 0 0;
+v01250BB8_0 .var "reset", 0 0;
+v01250848_0 .var "u_d", 0 0;
+S_0121D810 .scope module, "uut" "counter_10_to_40_up__down" 2 16, 3 1, S_0121D898;
+ .timescale 0 0;
+v0121EE00_0 .net "clock", 0 0, v012504D8_0; 1 drivers
+v01250740_0 .alias "count", 7 0, v01250588_0;
+v01250530_0 .var "count_tmp", 7 0;
+v012507F0_0 .net "data", 7 0, v01250950_0; 1 drivers
+v01250798_0 .net "load", 0 0, v012505E0_0; 1 drivers
+v01250C10_0 .net "reset", 0 0, v01250BB8_0; 1 drivers
+v01250B08_0 .net "u_d", 0 0, v01250848_0; 1 drivers
+E_0121A7C0 .event posedge, v0121EE00_0;
+    .scope S_0121D810;
+T_0 ;
+    %wait E_0121A7C0;
+    %load/v 8, v01250C10_0, 1;
+    %inv 8, 1;
+    %movi 9, 40, 8;
+    %load/v 17, v01250530_0, 8;
+    %cmp/u 9, 17, 8;
+    %or 5, 4, 1;
+    %or 8, 5, 1;
+    %load/v 9, v01250530_0, 8;
+   %cmpi/u 9, 10, 8;
+    %or 8, 5, 1;
+    %jmp/0xz  T_0.0, 8;
+    %movi 8, 10, 8;
+    %ix/load 0, 8, 0;
+    %assign/v0 v01250530_0, 0, 8;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/v 8, v01250798_0, 1;
+    %jmp/0xz  T_0.2, 8;
+    %load/v 8, v012507F0_0, 8;
+    %ix/load 0, 8, 0;
+    %assign/v0 v01250530_0, 0, 8;
+    %jmp T_0.3;
+T_0.2 ;
+    %load/v 8, v01250B08_0, 1;
+    %jmp/0xz  T_0.4, 8;
+    %movi 8, 40, 8;
+    %load/v 16, v01250530_0, 8;
+    %cmp/u 8, 16, 8;
+    %or 5, 4, 1;
+    %mov 8, 5, 1;
+    %jmp/0  T_0.6, 8;
+    %movi 9, 10, 32;
+    %jmp/1  T_0.8, 8;
+T_0.6 ; End of true expr.
+    %load/v 41, v01250530_0, 8;
+    %mov 49, 0, 24;
+    %addi 41, 1, 32;
+    %jmp/0  T_0.7, 8;
+ ; End of false expr.
+    %blend  9, 41, 32; Condition unknown.
+    %jmp  T_0.8;
+T_0.7 ;
+    %mov 9, 41, 32; Return false value
+T_0.8 ;
+    %ix/load 0, 8, 0;
+    %assign/v0 v01250530_0, 0, 9;
+    %jmp T_0.5;
+T_0.4 ;
+    %load/v 8, v01250530_0, 8;
+   %cmpi/u 8, 10, 8;
+    %or 5, 4, 1;
+    %mov 8, 5, 1;
+    %jmp/0  T_0.9, 8;
+    %movi 9, 40, 32;
+    %jmp/1  T_0.11, 8;
+T_0.9 ; End of true expr.
+    %load/v 41, v01250530_0, 8;
+    %mov 49, 0, 24;
+    %subi 41, 1, 32;
+    %jmp/0  T_0.10, 8;
+ ; End of false expr.
+    %blend  9, 41, 32; Condition unknown.
+    %jmp  T_0.11;
+T_0.10 ;
+    %mov 9, 41, 32; Return false value
+T_0.11 ;
+    %ix/load 0, 8, 0;
+    %assign/v0 v01250530_0, 0, 9;
+T_0.5 ;
+T_0.3 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0121D898;
+T_1 ;
+    %delay 5000, 0;
+    %load/v 8, v012504D8_0, 1;
+    %inv 8, 1;
+    %set/v v012504D8_0, 8, 1;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_0121D898;
+T_2 ;
+    %set/v v012504D8_0, 0, 1;
+    %set/v v01250BB8_0, 0, 1;
+    %set/v v01250848_0, 1, 1;
+    %set/v v012505E0_0, 0, 1;
+    %set/v v01250950_0, 0, 8;
+    %delay 10000, 0;
+    %set/v v01250BB8_0, 1, 1;
+    %vpi_call 2 41 "$display", "Testing Up-Counting...";
+    %set/v v01250848_0, 1, 1;
+    %delay 400000, 0;
+    %vpi_call 2 46 "$display", "Testing Down-Counting...";
+    %set/v v01250848_0, 0, 1;
+    %delay 400000, 0;
+    %vpi_call 2 51 "$display", "Testing Load Functionality...";
+    %set/v v012505E0_0, 1, 1;
+    %movi 8, 25, 8;
+    %set/v v01250950_0, 8, 8;
+    %delay 10000, 0;
+    %set/v v012505E0_0, 0, 1;
+    %delay 10000, 0;
+    %vpi_call 2 59 "$display", "Testing Reset Functionality...";
+    %set/v v01250BB8_0, 0, 1;
+    %delay 10000, 0;
+    %set/v v01250BB8_0, 1, 1;
+    %vpi_call 2 65 "$display", "Simulation Complete.";
+    %vpi_call 2 66 "$finish";
+    %end;
+    .thread T_2;
+    .scope S_0121D898;
+T_3 ;
+    %vpi_call 2 71 "$monitor", "Time=%0t | Reset=%b | Load=%b | U/D=%b | Data=%d | Count=%d", $time, v01250BB8_0, v012505E0_0, v01250848_0, v01250950_0, v01250588_0;
+    %end;
+    .thread T_3;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "Range_load_tb.v";
+    "Range_load.v";

@@ -1,0 +1,61 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 9;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_012531A0 .scope module, "HA_Behavioural_tb" "HA_Behavioural_tb" 2 3;
+ .timescale -9 -9;
+v01162B40_0 .var "a", 0 0;
+v01162B98_0 .var "b", 0 0;
+v01162BF0_0 .net "c", 0 0, v01162A90_0; 1 drivers
+v01162C48_0 .net "s", 0 0, v01162AE8_0; 1 drivers
+S_01254F08 .scope module, "uut" "HA_Behavioural" 2 14, 3 1, S_012531A0;
+ .timescale -9 -9;
+v01254F90_0 .net "a", 0 0, v01162B40_0; 1 drivers
+v01254FE8_0 .net "b", 0 0, v01162B98_0; 1 drivers
+v01162A90_0 .var "c", 0 0;
+v01162AE8_0 .var "s", 0 0;
+E_012585E8 .event edge, v01254FE8_0, v01254F90_0;
+    .scope S_01254F08;
+T_0 ;
+    %wait E_012585E8;
+    %load/v 8, v01254F90_0, 1;
+    %load/v 9, v01254FE8_0, 1;
+    %xor 8, 9, 1;
+    %set/v v01162AE8_0, 8, 1;
+    %load/v 8, v01254F90_0, 1;
+    %load/v 9, v01254FE8_0, 1;
+    %and 8, 9, 1;
+    %set/v v01162A90_0, 8, 1;
+    %jmp T_0;
+    .thread T_0, $push;
+    .scope S_012531A0;
+T_1 ;
+    %vpi_call 2 24 "$dumpfile", "HA_Behavioural_tb.vcd";
+    %vpi_call 2 25 "$dumpvars", 1'sb0, S_012531A0;
+    %set/v v01162B40_0, 0, 1;
+    %set/v v01162B98_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 30 "$display", "a = %b, b = %b, s = %b, c = %b", v01162B40_0, v01162B98_0, v01162C48_0, v01162BF0_0;
+    %set/v v01162B40_0, 0, 1;
+    %set/v v01162B98_0, 1, 1;
+    %delay 10, 0;
+    %vpi_call 2 35 "$display", "a = %b, b = %b, s = %b, c = %b", v01162B40_0, v01162B98_0, v01162C48_0, v01162BF0_0;
+    %set/v v01162B40_0, 1, 1;
+    %set/v v01162B98_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 40 "$display", "a = %b, b = %b, s = %b, c = %b", v01162B40_0, v01162B98_0, v01162C48_0, v01162BF0_0;
+    %set/v v01162B40_0, 1, 1;
+    %set/v v01162B98_0, 1, 1;
+    %delay 10, 0;
+    %vpi_call 2 45 "$display", "a = %b, b = %b, s = %b, c = %b", v01162B40_0, v01162B98_0, v01162C48_0, v01162BF0_0;
+    %vpi_call 2 48 "$finish";
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "HalfAdder_Behavioural_tb.v";
+    "HalfAdder_Behavioural.v";

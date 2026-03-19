@@ -1,0 +1,74 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 9;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_00917AB8 .scope module, "Priority_Dataflow_1_tb" "Priority_Dataflow_1_tb" 2 2;
+ .timescale -9 -9;
+v011B51A8_0 .var "I", 3 0;
+v011B5150_0 .net "V", 0 0, L_011B56D0; 1 drivers
+v011B5678_0 .net "Y", 1 0, L_011B5200; 1 drivers
+S_00917DE8 .scope module, "uut" "Priority_Dataflow_1" 2 9, 3 1, S_00917AB8;
+ .timescale 0 0;
+v01193F30_0 .net "I", 3 0, v011B51A8_0; 1 drivers
+v00913D40_0 .alias "V", 0 0, v011B5150_0;
+v00913D98_0 .alias "Y", 1 0, v011B5678_0;
+v00913DF0_0 .net *"_s12", 0 0, L_011B5360; 1 drivers
+v00913138_0 .net *"_s13", 2 0, C4<110>; 1 drivers
+v00913190_0 .net *"_s16", 0 0, L_011B5258; 1 drivers
+v009131E8_0 .net *"_s17", 2 0, C4<111>; 1 drivers
+v00918880_0 .net *"_s19", 2 0, C4<000>; 1 drivers
+v009188D8_0 .net *"_s21", 2 0, L_011B5410; 1 drivers
+v00918930_0 .net *"_s23", 2 0, L_011B5468; 1 drivers
+v00918988_0 .net *"_s25", 2 0, L_011B54C0; 1 drivers
+v009189E0_0 .net *"_s27", 2 0, L_011B55C8; 1 drivers
+v011B5518_0 .net *"_s4", 0 0, L_011B5308; 1 drivers
+v011B52B0_0 .net *"_s5", 2 0, C4<100>; 1 drivers
+v011B5570_0 .net *"_s8", 0 0, L_011B53B8; 1 drivers
+v011B5728_0 .net *"_s9", 2 0, C4<101>; 1 drivers
+L_011B56D0 .part L_011B55C8, 2, 1;
+L_011B5200 .part L_011B55C8, 0, 2;
+L_011B5308 .part v011B51A8_0, 0, 1;
+L_011B53B8 .part v011B51A8_0, 1, 1;
+L_011B5360 .part v011B51A8_0, 2, 1;
+L_011B5258 .part v011B51A8_0, 3, 1;
+L_011B5410 .functor MUXZ 3, C4<000>, C4<111>, L_011B5258, C4<>;
+L_011B5468 .functor MUXZ 3, L_011B5410, C4<110>, L_011B5360, C4<>;
+L_011B54C0 .functor MUXZ 3, L_011B5468, C4<101>, L_011B53B8, C4<>;
+L_011B55C8 .functor MUXZ 3, L_011B54C0, C4<100>, L_011B5308, C4<>;
+    .scope S_00917AB8;
+T_0 ;
+    %vpi_call 2 12 "$dumpfile", "Priority_Dataflow_1.vcd";
+    %vpi_call 2 13 "$dumpvars", 1'sb0, S_00917AB8;
+    %vpi_call 2 15 "$monitor", "I=%b -> Y=%b, V=%b", v011B51A8_0, v011B5678_0, v011B5150_0;
+    %delay 0, 0;
+    %movi 8, 1, 4;
+    %set/v v011B51A8_0, 8, 4;
+    %delay 10, 0;
+    %movi 8, 2, 4;
+    %set/v v011B51A8_0, 8, 4;
+    %delay 10, 0;
+    %movi 8, 4, 4;
+    %set/v v011B51A8_0, 8, 4;
+    %delay 10, 0;
+    %movi 8, 8, 4;
+    %set/v v011B51A8_0, 8, 4;
+    %delay 10, 0;
+    %movi 8, 6, 4;
+    %set/v v011B51A8_0, 8, 4;
+    %delay 10, 0;
+    %movi 8, 10, 4;
+    %set/v v011B51A8_0, 8, 4;
+    %delay 10, 0;
+    %set/v v011B51A8_0, 0, 4;
+    %delay 10, 0;
+    %vpi_call 2 24 "$finish";
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "P_Dataflow_1_tb.v";
+    "P_Dataflow_1.v";

@@ -1,0 +1,81 @@
+$date
+	Sun Feb 02 13:33:56 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module Behavioural_Async_Reset_tb $end
+$var wire 1 ! q $end
+$var reg 1 " d $end
+$var reg 1 # en $end
+$var reg 1 $ rst $end
+$scope module uut $end
+$var wire 1 % d $end
+$var wire 1 & en $end
+$var wire 1 ' rst $end
+$var reg 1 ( q $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+x(
+0'
+0&
+0%
+0$
+0#
+0"
+x!
+$end
+#10000
+1"
+1%
+#20000
+1(
+1!
+1#
+1&
+#30000
+0(
+0!
+0"
+0%
+#40000
+1(
+1!
+1"
+1%
+#50000
+0#
+0&
+0"
+0%
+#60000
+0(
+0!
+1$
+1'
+1"
+1%
+#70000
+1#
+1&
+0"
+0%
+#80000
+1(
+1!
+0$
+0'
+1"
+1%
+#90000
+0#
+0&
+0"
+0%
+#100000

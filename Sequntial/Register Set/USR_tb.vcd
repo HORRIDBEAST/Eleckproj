@@ -1,0 +1,118 @@
+$date
+	Sat Feb 08 11:59:15 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module USR_tb $end
+$var wire 5 ! PO [4:0] $end
+$var wire 1 " SO $end
+$var reg 5 # PI [4:0] $end
+$var reg 1 $ SI $end
+$var reg 1 % clk $end
+$var reg 1 & rst $end
+$var reg 2 ' sel [1:0] $end
+$scope module uut $end
+$var wire 5 ( PI [4:0] $end
+$var wire 1 ) SI $end
+$var wire 1 " SO $end
+$var wire 1 * clk $end
+$var wire 1 + rst $end
+$var wire 2 , sel [1:0] $end
+$var reg 5 - PO [4:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 -
+b0 ,
+0+
+0*
+0)
+b10101 (
+b0 '
+0&
+0%
+0$
+b10101 #
+0"
+b0 !
+$end
+#5000
+1&
+1+
+1%
+1*
+#10000
+0&
+0+
+0%
+0*
+#15000
+1%
+1*
+#20000
+0%
+0*
+b11 '
+b11 ,
+#25000
+1%
+1*
+#30000
+0%
+0*
+b0 '
+b0 ,
+#35000
+1%
+1*
+#40000
+0%
+0*
+1$
+1)
+b1 '
+b1 ,
+#45000
+1%
+1*
+#50000
+0%
+0*
+0$
+0)
+#55000
+1%
+1*
+#60000
+0%
+0*
+1$
+1)
+b10 '
+b10 ,
+#65000
+1%
+1*
+#70000
+0%
+0*
+0$
+0)
+#75000
+1%
+1*
+#80000
+0%
+0*
+#85000
+1%
+1*
+#90000
+0%
+0*

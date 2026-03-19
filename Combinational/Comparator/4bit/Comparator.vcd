@@ -1,0 +1,71 @@
+$date
+	Fri Jan 31 21:10:17 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module Dataflow_1_tb $end
+$var wire 1 ! eq $end
+$var wire 1 " gt $end
+$var wire 1 # sm $end
+$var reg 4 $ a [3:0] $end
+$var reg 4 % b [3:0] $end
+$scope module uut $end
+$var wire 4 & a [3:0] $end
+$var wire 4 ' b [3:0] $end
+$var wire 1 ! eq $end
+$var wire 1 " gt $end
+$var wire 1 # sm $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 '
+b0 &
+b0 %
+b0 $
+0#
+0"
+1!
+$end
+#10000
+1"
+0#
+0!
+b11 %
+b11 '
+b100 $
+b100 &
+#20000
+1#
+0"
+b1010 %
+b1010 '
+b1001 $
+b1001 &
+#30000
+0#
+1"
+b111 %
+b111 '
+b1111 $
+b1111 &
+#40000
+0"
+1!
+b110 %
+b110 '
+b110 $
+b110 &
+#50000
+1#
+0!
+b111 %
+b111 '
+b11 $
+b11 &
+#60000

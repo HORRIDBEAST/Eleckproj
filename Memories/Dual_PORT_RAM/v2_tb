@@ -1,0 +1,126 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 12;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0119D808 .scope module, "tb_ram_dual_port2" "tb_ram_dual_port2" 2 3;
+ .timescale -9 -12;
+v0119E850_0 .var "data", 7 0;
+v0119E8A8_0 .var/i "i", 31 0;
+v0119E900_0 .net "q", 7 0, v0119E6A0_0; 1 drivers
+v0119B978_0 .var "read_add", 5 0;
+v0119B9D0_0 .var "read_clk", 0 0;
+v0119BA28_0 .var "we", 0 0;
+v0119BA80_0 .var "write_add", 5 0;
+v0119BAD8_0 .var "write_clk", 0 0;
+S_0119D890 .scope module, "uut" "ram_dual_port2" 2 12, 3 1, S_0119D808;
+ .timescale -9 -12;
+v0119E648_0 .net "data", 7 0, v0119E850_0; 1 drivers
+v0119E6A0_0 .var "q", 7 0;
+v01193060 .array "ram", 0 63, 7 0;
+v011930B8_0 .net "read_add", 5 0, v0119B978_0; 1 drivers
+v01193110_0 .var "read_add_reg", 5 0;
+v011D2AF8_0 .net "read_clk", 0 0, v0119B9D0_0; 1 drivers
+v011D2B50_0 .net "we", 0 0, v0119BA28_0; 1 drivers
+v011D2BA8_0 .net "write_add", 5 0, v0119BA80_0; 1 drivers
+v0119E7F8_0 .net "write_clk", 0 0, v0119BAD8_0; 1 drivers
+E_01198A38 .event posedge, v011D2AF8_0;
+E_01198958 .event posedge, v0119E7F8_0;
+    .scope S_0119D890;
+T_0 ;
+    %wait E_01198958;
+    %load/v 8, v011D2B50_0, 1;
+    %jmp/0xz  T_0.0, 8;
+    %load/v 8, v0119E648_0, 8;
+    %ix/getv 3, v011D2BA8_0;
+    %jmp/1 t_0, 4;
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v01193060, 0, 8;
+t_0 ;
+T_0.0 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0119D890;
+T_1 ;
+    %wait E_01198A38;
+    %ix/getv 3, v01193110_0;
+    %load/av 8, v01193060, 8;
+    %ix/load 0, 8, 0;
+    %assign/v0 v0119E6A0_0, 0, 8;
+    %load/v 8, v011930B8_0, 6;
+    %ix/load 0, 6, 0;
+    %assign/v0 v01193110_0, 0, 8;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_0119D808;
+T_2 ;
+    %delay 5000, 0;
+    %load/v 8, v0119BAD8_0, 1;
+    %inv 8, 1;
+    %set/v v0119BAD8_0, 8, 1;
+    %jmp T_2;
+    .thread T_2;
+    .scope S_0119D808;
+T_3 ;
+    %delay 7000, 0;
+    %load/v 8, v0119B9D0_0, 1;
+    %inv 8, 1;
+    %set/v v0119B9D0_0, 8, 1;
+    %jmp T_3;
+    .thread T_3;
+    .scope S_0119D808;
+T_4 ;
+    %set/v v0119BAD8_0, 0, 1;
+    %set/v v0119B9D0_0, 0, 1;
+    %set/v v0119BA28_0, 0, 1;
+    %set/v v0119B978_0, 0, 6;
+    %set/v v0119BA80_0, 0, 6;
+    %set/v v0119E850_0, 0, 8;
+    %vpi_call 2 38 "$display", "Test 1: Writing to RAM...";
+    %set/v v0119E8A8_0, 0, 32;
+T_4.0 ;
+    %load/v 8, v0119E8A8_0, 32;
+   %cmpi/s 8, 10, 32;
+    %jmp/0xz T_4.1, 5;
+    %wait E_01198958;
+    %set/v v0119BA28_0, 1, 1;
+    %load/v 8, v0119E8A8_0, 32;
+    %set/v v0119BA80_0, 8, 6;
+    %load/v 8, v0119E8A8_0, 32;
+    %mov 40, 39, 1;
+    %addi 8, 50, 33;
+    %set/v v0119E850_0, 8, 8;
+    %ix/load 0, 1, 0;
+    %load/vp0/s 8, v0119E8A8_0, 32;
+    %set/v v0119E8A8_0, 8, 32;
+    %jmp T_4.0;
+T_4.1 ;
+    %set/v v0119BA28_0, 0, 1;
+    %vpi_call 2 48 "$display", "Test 2: Reading from RAM...";
+    %set/v v0119E8A8_0, 0, 32;
+T_4.2 ;
+    %load/v 8, v0119E8A8_0, 32;
+   %cmpi/s 8, 10, 32;
+    %jmp/0xz T_4.3, 5;
+    %wait E_01198A38;
+    %load/v 8, v0119E8A8_0, 32;
+    %set/v v0119B978_0, 8, 6;
+    %delay 2000, 0;
+    %vpi_call 2 53 "$display", "Read Addr: %2d, Data Out: %3d", v0119B978_0, v0119E900_0;
+    %ix/load 0, 1, 0;
+    %load/vp0/s 8, v0119E8A8_0, 32;
+    %set/v v0119E8A8_0, 8, 32;
+    %jmp T_4.2;
+T_4.3 ;
+    %delay 20000, 0;
+    %vpi_call 2 57 "$finish";
+    %end;
+    .thread T_4;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "v2_tb.v";
+    "v2.v";

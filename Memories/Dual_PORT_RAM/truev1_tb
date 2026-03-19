@@ -1,0 +1,168 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 12;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0118E898 .scope module, "tb_ram_dual_port1" "tb_ram_dual_port1" 2 3;
+ .timescale -9 -12;
+v011830D8_0 .var "add_a", 5 0;
+v01183130_0 .var "add_b", 5 0;
+v01183188_0 .var "clk", 0 0;
+v0118AB80_0 .var "data_a", 7 0;
+v0118ABD8_0 .var "data_b", 7 0;
+v0118AC30_0 .var/i "i", 31 0;
+v011E7258_0 .net "q_a", 7 0, v01188900_0; 1 drivers
+v011E7150_0 .net "q_b", 7 0, v011C3238_0; 1 drivers
+v011E6E90_0 .var "we_a", 0 0;
+v011E70A0_0 .var "we_b", 0 0;
+S_0118E9A8 .scope module, "uut" "ram_dual_port1" 2 12, 3 1, S_0118E898;
+ .timescale -9 -12;
+v01188A28_0 .net "add_a", 5 0, v011830D8_0; 1 drivers
+v0118A270_0 .net "add_b", 5 0, v01183130_0; 1 drivers
+v0118EEF0_0 .net "clk", 0 0, v01183188_0; 1 drivers
+v0118BA90_0 .net "data_a", 7 0, v0118AB80_0; 1 drivers
+v011888A8_0 .net "data_b", 7 0, v0118ABD8_0; 1 drivers
+v01188900_0 .var "q_a", 7 0;
+v011C3238_0 .var "q_b", 7 0;
+v011C3290 .array "ram", 0 63, 7 0;
+v011C32E8_0 .net "we_a", 0 0, v011E6E90_0; 1 drivers
+v01183080_0 .net "we_b", 0 0, v011E70A0_0; 1 drivers
+E_0118B598 .event posedge, v0118EEF0_0;
+    .scope S_0118E9A8;
+T_0 ;
+    %wait E_0118B598;
+    %load/v 8, v011C32E8_0, 1;
+    %jmp/0xz  T_0.0, 8;
+    %load/v 8, v0118BA90_0, 8;
+    %ix/getv 3, v01188A28_0;
+    %jmp/1 t_0, 4;
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v011C3290, 0, 8;
+t_0 ;
+    %load/v 8, v0118BA90_0, 8;
+    %ix/load 0, 8, 0;
+    %assign/v0 v01188900_0, 0, 8;
+    %jmp T_0.1;
+T_0.0 ;
+    %ix/getv 3, v01188A28_0;
+    %load/av 8, v011C3290, 8;
+    %ix/load 0, 8, 0;
+    %assign/v0 v01188900_0, 0, 8;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0118E9A8;
+T_1 ;
+    %wait E_0118B598;
+    %load/v 8, v01183080_0, 1;
+    %jmp/0xz  T_1.0, 8;
+    %load/v 8, v011888A8_0, 8;
+    %ix/getv 3, v0118A270_0;
+    %jmp/1 t_1, 4;
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v011C3290, 0, 8;
+t_1 ;
+    %load/v 8, v011888A8_0, 8;
+    %ix/load 0, 8, 0;
+    %assign/v0 v011C3238_0, 0, 8;
+    %jmp T_1.1;
+T_1.0 ;
+    %ix/getv 3, v0118A270_0;
+    %load/av 8, v011C3290, 8;
+    %ix/load 0, 8, 0;
+    %assign/v0 v011C3238_0, 0, 8;
+T_1.1 ;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_0118E898;
+T_2 ;
+    %delay 5000, 0;
+    %load/v 8, v01183188_0, 1;
+    %inv 8, 1;
+    %set/v v01183188_0, 8, 1;
+    %jmp T_2;
+    .thread T_2;
+    .scope S_0118E898;
+T_3 ;
+    %set/v v01183188_0, 0, 1;
+    %set/v v011E6E90_0, 0, 1;
+    %set/v v011E70A0_0, 0, 1;
+    %set/v v011830D8_0, 0, 6;
+    %set/v v01183130_0, 0, 6;
+    %set/v v0118AB80_0, 0, 8;
+    %set/v v0118ABD8_0, 0, 8;
+    %vpi_call 2 37 "$display", "Test 1: Writing to RAM via Port A...";
+    %set/v v0118AC30_0, 0, 32;
+T_3.0 ;
+    %load/v 8, v0118AC30_0, 32;
+   %cmpi/s 8, 5, 32;
+    %jmp/0xz T_3.1, 5;
+    %wait E_0118B598;
+    %set/v v011E6E90_0, 1, 1;
+    %load/v 8, v0118AC30_0, 32;
+    %set/v v011830D8_0, 8, 6;
+    %load/v 8, v0118AC30_0, 32;
+    %mov 40, 39, 1;
+    %addi 8, 50, 33;
+    %set/v v0118AB80_0, 8, 8;
+    %ix/load 0, 1, 0;
+    %load/vp0/s 8, v0118AC30_0, 32;
+    %set/v v0118AC30_0, 8, 32;
+    %jmp T_3.0;
+T_3.1 ;
+    %set/v v011E6E90_0, 0, 1;
+    %vpi_call 2 47 "$display", "Test 2: Writing to RAM via Port B...";
+    %movi 8, 5, 32;
+    %set/v v0118AC30_0, 8, 32;
+T_3.2 ;
+    %load/v 8, v0118AC30_0, 32;
+   %cmpi/s 8, 10, 32;
+    %jmp/0xz T_3.3, 5;
+    %wait E_0118B598;
+    %set/v v011E70A0_0, 1, 1;
+    %load/v 8, v0118AC30_0, 32;
+    %set/v v01183130_0, 8, 6;
+    %load/v 8, v0118AC30_0, 32;
+    %mov 40, 39, 1;
+    %addi 8, 100, 33;
+    %set/v v0118ABD8_0, 8, 8;
+    %ix/load 0, 1, 0;
+    %load/vp0/s 8, v0118AC30_0, 32;
+    %set/v v0118AC30_0, 8, 32;
+    %jmp T_3.2;
+T_3.3 ;
+    %set/v v011E70A0_0, 0, 1;
+    %vpi_call 2 57 "$display", "Test 3: Reading from RAM using both ports...";
+    %set/v v0118AC30_0, 0, 32;
+T_3.4 ;
+    %load/v 8, v0118AC30_0, 32;
+   %cmpi/s 8, 10, 32;
+    %jmp/0xz T_3.5, 5;
+    %wait E_0118B598;
+    %load/v 8, v0118AC30_0, 32;
+    %set/v v011830D8_0, 8, 6;
+    %movi 8, 9, 33;
+    %load/v 41, v0118AC30_0, 32;
+    %mov 73, 72, 1;
+    %sub 8, 41, 33;
+    %set/v v01183130_0, 8, 6;
+    %delay 2000, 0;
+    %vpi_call 2 63 "$display", "Addr A: %2d, Data Out A: %3d | Addr B: %2d, Data Out B: %3d", v011830D8_0, v011E7258_0, v01183130_0, v011E7150_0;
+    %ix/load 0, 1, 0;
+    %load/vp0/s 8, v0118AC30_0, 32;
+    %set/v v0118AC30_0, 8, 32;
+    %jmp T_3.4;
+T_3.5 ;
+    %delay 20000, 0;
+    %vpi_call 2 67 "$finish";
+    %end;
+    .thread T_3;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "truev1_tb.v";
+    "truev1.v";

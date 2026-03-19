@@ -1,0 +1,141 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 9;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_012D85E0 .scope module, "Dataflow_tb" "Dataflow_tb" 2 3;
+ .timescale -9 -9;
+v01130608_0 .var "a", 3 0;
+v01130348_0 .var "b", 3 0;
+v01130298_0 .var "cin", 0 0;
+v011301E8_0 .net "cout", 0 0, L_01130450; 1 drivers
+v011303F8_0 .net "sum", 3 0, L_011302F0; 1 drivers
+S_012D82B0 .scope module, "uut" "Dataflow" 2 10, 3 1, S_012D85E0;
+ .timescale 0 0;
+v012DB758_0 .net *"_s10", 0 0, C4<0>; 1 drivers
+v012DB7B0_0 .net *"_s11", 4 0, L_01130710; 1 drivers
+v012DB808_0 .net *"_s13", 4 0, L_01130240; 1 drivers
+v012D3E00_0 .net *"_s16", 3 0, C4<0000>; 1 drivers
+v012D3E58_0 .net *"_s17", 4 0, L_011304A8; 1 drivers
+v012D3EB0_0 .net *"_s3", 4 0, L_011307C0; 1 drivers
+v012D3138_0 .net *"_s6", 0 0, C4<0>; 1 drivers
+v012D3190_0 .net *"_s7", 4 0, L_01130660; 1 drivers
+v012D31E8_0 .net "a", 3 0, v01130608_0; 1 drivers
+v01130138_0 .net "b", 3 0, v01130348_0; 1 drivers
+v011303A0_0 .net "cin", 0 0, v01130298_0; 1 drivers
+v01130500_0 .alias "cout", 0 0, v011301E8_0;
+v011306B8_0 .alias "sum", 3 0, v011303F8_0;
+L_01130450 .part L_011304A8, 4, 1;
+L_011302F0 .part L_011304A8, 0, 4;
+L_011307C0 .concat [ 4 1 0 0], v01130608_0, C4<0>;
+L_01130660 .concat [ 4 1 0 0], v01130348_0, C4<0>;
+L_01130710 .arith/sum 5, L_011307C0, L_01130660;
+L_01130240 .concat [ 1 4 0 0], v01130298_0, C4<0000>;
+L_011304A8 .arith/sum 5, L_01130710, L_01130240;
+    .scope S_012D85E0;
+T_0 ;
+    %vpi_call 2 14 "$dumpfile", "Dataflow_tb.vcd";
+    %vpi_call 2 15 "$dumpvars", 1'sb0, S_012D85E0;
+    %vpi_call 2 18 "$monitor", "a=%b, b=%b, cin=%b, sum=%b, cout=%b", v01130608_0, v01130348_0, v01130298_0, v011303F8_0, v011301E8_0;
+    %set/v v01130608_0, 0, 4;
+    %set/v v01130348_0, 0, 4;
+    %set/v v01130298_0, 0, 1;
+    %delay 10, 0;
+    %movi 8, 1, 4;
+    %set/v v01130608_0, 8, 4;
+    %movi 8, 1, 4;
+    %set/v v01130348_0, 8, 4;
+    %set/v v01130298_0, 0, 1;
+    %delay 10, 0;
+    %movi 8, 2, 4;
+    %set/v v01130608_0, 8, 4;
+    %movi 8, 2, 4;
+    %set/v v01130348_0, 8, 4;
+    %set/v v01130298_0, 0, 1;
+    %delay 10, 0;
+    %movi 8, 3, 4;
+    %set/v v01130608_0, 8, 4;
+    %movi 8, 3, 4;
+    %set/v v01130348_0, 8, 4;
+    %set/v v01130298_0, 0, 1;
+    %delay 10, 0;
+    %movi 8, 4, 4;
+    %set/v v01130608_0, 8, 4;
+    %movi 8, 4, 4;
+    %set/v v01130348_0, 8, 4;
+    %set/v v01130298_0, 0, 1;
+    %delay 10, 0;
+    %movi 8, 5, 4;
+    %set/v v01130608_0, 8, 4;
+    %movi 8, 5, 4;
+    %set/v v01130348_0, 8, 4;
+    %set/v v01130298_0, 0, 1;
+    %delay 10, 0;
+    %movi 8, 6, 4;
+    %set/v v01130608_0, 8, 4;
+    %movi 8, 6, 4;
+    %set/v v01130348_0, 8, 4;
+    %set/v v01130298_0, 0, 1;
+    %delay 10, 0;
+    %movi 8, 7, 4;
+    %set/v v01130608_0, 8, 4;
+    %movi 8, 7, 4;
+    %set/v v01130348_0, 8, 4;
+    %set/v v01130298_0, 0, 1;
+    %delay 10, 0;
+    %movi 8, 8, 4;
+    %set/v v01130608_0, 8, 4;
+    %movi 8, 8, 4;
+    %set/v v01130348_0, 8, 4;
+    %set/v v01130298_0, 0, 1;
+    %delay 10, 0;
+    %movi 8, 9, 4;
+    %set/v v01130608_0, 8, 4;
+    %movi 8, 9, 4;
+    %set/v v01130348_0, 8, 4;
+    %set/v v01130298_0, 0, 1;
+    %delay 10, 0;
+    %movi 8, 10, 4;
+    %set/v v01130608_0, 8, 4;
+    %movi 8, 10, 4;
+    %set/v v01130348_0, 8, 4;
+    %set/v v01130298_0, 0, 1;
+    %delay 10, 0;
+    %movi 8, 11, 4;
+    %set/v v01130608_0, 8, 4;
+    %movi 8, 11, 4;
+    %set/v v01130348_0, 8, 4;
+    %set/v v01130298_0, 0, 1;
+    %delay 10, 0;
+    %movi 8, 12, 4;
+    %set/v v01130608_0, 8, 4;
+    %movi 8, 12, 4;
+    %set/v v01130348_0, 8, 4;
+    %set/v v01130298_0, 0, 1;
+    %delay 10, 0;
+    %movi 8, 13, 4;
+    %set/v v01130608_0, 8, 4;
+    %movi 8, 13, 4;
+    %set/v v01130348_0, 8, 4;
+    %set/v v01130298_0, 0, 1;
+    %delay 10, 0;
+    %movi 8, 14, 4;
+    %set/v v01130608_0, 8, 4;
+    %movi 8, 14, 4;
+    %set/v v01130348_0, 8, 4;
+    %set/v v01130298_0, 0, 1;
+    %delay 10, 0;
+    %set/v v01130608_0, 1, 4;
+    %set/v v01130348_0, 1, 4;
+    %set/v v01130298_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 37 "$finish";
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "Dataflow_tb.v";
+    "Dataflow.v";

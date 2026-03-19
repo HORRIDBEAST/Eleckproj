@@ -1,0 +1,84 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 12;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_011C3238 .scope module, "SR_LR_tb" "SR_LR_tb" 2 3;
+ .timescale -9 -12;
+v011C8C80_0 .var "SI", 0 0;
+v011C8CD8_0 .net "SO", 0 0, L_011C8DE0; 1 drivers
+v011C8D30_0 .var "clk", 0 0;
+v011C8D88_0 .var "rst", 0 0;
+S_011C32C0 .scope module, "uut" "SR_LR" 2 8, 3 1, S_011C3238;
+ .timescale -9 -12;
+v011C7E38_0 .net "SI", 0 0, v011C8C80_0; 1 drivers
+v01201C88_0 .alias "SO", 0 0, v011C8CD8_0;
+v01201CE0_0 .var "SR", 4 0;
+v01201D38_0 .net "clk", 0 0, v011C8D30_0; 1 drivers
+v011C8C28_0 .net "rst", 0 0, v011C8D88_0; 1 drivers
+E_01203930/0 .event negedge, v011C8C28_0;
+E_01203930/1 .event posedge, v01201D38_0;
+E_01203930 .event/or E_01203930/0, E_01203930/1;
+L_011C8DE0 .part v01201CE0_0, 4, 1;
+    .scope S_011C32C0;
+T_0 ;
+    %wait E_01203930;
+    %load/v 8, v011C8C28_0, 1;
+    %inv 8, 1;
+    %jmp/0xz  T_0.0, 8;
+    %ix/load 0, 5, 0;
+    %assign/v0 v01201CE0_0, 0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/v 8, v011C7E38_0, 1;
+    %load/v 9, v01201CE0_0, 4; Select 4 out of 5 bits
+    %ix/load 0, 5, 0;
+    %assign/v0 v01201CE0_0, 0, 8;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_011C3238;
+T_1 ;
+    %delay 5000, 0;
+    %load/v 8, v011C8D30_0, 1;
+    %inv 8, 1;
+    %set/v v011C8D30_0, 8, 1;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_011C3238;
+T_2 ;
+    %vpi_call 2 14 "$dumpfile", "SR_LR.vcd";
+    %vpi_call 2 15 "$dumpvars", 1'sb0, S_011C3238;
+    %vpi_call 2 17 "$monitor", "Time=%0t | SI=%b, clk=%b, rst=%b -> SR[4]=%b (SO=%b)", $time, v011C8C80_0, v011C8D30_0, v011C8D88_0, v011C8CD8_0, v011C8CD8_0;
+    %set/v v011C8D30_0, 0, 1;
+    %set/v v011C8C80_0, 0, 1;
+    %set/v v011C8D88_0, 0, 1;
+    %delay 10000, 0;
+    %set/v v011C8D88_0, 1, 1;
+    %delay 10000, 0;
+    %set/v v011C8C80_0, 1, 1;
+    %delay 10000, 0;
+    %set/v v011C8C80_0, 0, 1;
+    %delay 10000, 0;
+    %set/v v011C8C80_0, 1, 1;
+    %delay 10000, 0;
+    %set/v v011C8C80_0, 1, 1;
+    %delay 10000, 0;
+    %set/v v011C8C80_0, 0, 1;
+    %delay 10000, 0;
+    %set/v v011C8C80_0, 1, 1;
+    %delay 10000, 0;
+    %set/v v011C8D88_0, 0, 1;
+    %delay 10000, 0;
+    %set/v v011C8D88_0, 1, 1;
+    %delay 50000, 0;
+    %vpi_call 2 38 "$finish";
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "5bit_LtoR_Shift_Reg_tb.v";
+    "5bit_LtoR_Shift_Reg.v";

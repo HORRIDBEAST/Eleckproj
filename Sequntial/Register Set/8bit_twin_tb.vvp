@@ -1,0 +1,93 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 12;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_010F3238 .scope module, "Reg_set_tb" "Reg_set_tb" 2 3;
+ .timescale -9 -12;
+v010FEB70_0 .var "CLK", 0 0;
+v010FEBC8_0 .var "D1", 7 0;
+v010FEC20_0 .var "D2", 7 0;
+v010FEC78_0 .net "Q1", 7 0, v011329A0_0; 1 drivers
+v010FECD0_0 .net "Q2", 7 0, v011329F8_0; 1 drivers
+v010FED28_0 .var "RST", 0 0;
+S_010FA0F0 .scope module, "uut" "Reg_set" 2 9, 3 1, S_010F3238;
+ .timescale -9 -12;
+v010F9148_0 .net "CLK", 0 0, v010FEB70_0; 1 drivers
+v010F32C0_0 .net "D1", 7 0, v010FEBC8_0; 1 drivers
+v010F3318_0 .net "D2", 7 0, v010FEC20_0; 1 drivers
+v011329A0_0 .var "Q1", 7 0;
+v011329F8_0 .var "Q2", 7 0;
+v01132A50_0 .net "RST", 0 0, v010FED28_0; 1 drivers
+E_010F7EE0 .event posedge, v010F9148_0;
+    .scope S_010FA0F0;
+T_0 ;
+    %wait E_010F7EE0;
+    %load/v 8, v01132A50_0, 1;
+    %jmp/0xz  T_0.0, 8;
+    %ix/load 0, 8, 0;
+    %assign/v0 v011329A0_0, 0, 0;
+    %ix/load 0, 8, 0;
+    %assign/v0 v011329F8_0, 0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/v 8, v010F32C0_0, 8;
+    %ix/load 0, 8, 0;
+    %assign/v0 v011329A0_0, 0, 8;
+    %load/v 8, v010F3318_0, 8;
+    %ix/load 0, 8, 0;
+    %assign/v0 v011329F8_0, 0, 8;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_010F3238;
+T_1 ;
+    %delay 5000, 0;
+    %load/v 8, v010FEB70_0, 1;
+    %inv 8, 1;
+    %set/v v010FEB70_0, 8, 1;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_010F3238;
+T_2 ;
+    %vpi_call 2 15 "$dumpfile", "Reg_set.vcd";
+    %vpi_call 2 16 "$dumpvars", 1'sb0, S_010F3238;
+    %vpi_call 2 18 "$monitor", "D1=%b, D2=%b, CLK=%b, RST=%b -> Q1=%b, Q2=%b", $time, v010FEBC8_0, v010FEC20_0, v010FEB70_0, v010FED28_0, v010FEC78_0, v010FECD0_0;
+    %set/v v010FEB70_0, 0, 1;
+    %set/v v010FEBC8_0, 0, 8;
+    %set/v v010FEC20_0, 0, 8;
+    %set/v v010FED28_0, 1, 1;
+    %delay 10000, 0;
+    %set/v v010FED28_0, 1, 1;
+    %delay 10000, 0;
+    %set/v v010FED28_0, 0, 1;
+    %delay 10000, 0;
+    %movi 8, 170, 8;
+    %set/v v010FEBC8_0, 8, 8;
+    %movi 8, 85, 8;
+    %set/v v010FEC20_0, 8, 8;
+    %delay 10000, 0;
+    %movi 8, 240, 8;
+    %set/v v010FEBC8_0, 8, 8;
+    %movi 8, 15, 8;
+    %set/v v010FEC20_0, 8, 8;
+    %delay 10000, 0;
+    %set/v v010FED28_0, 1, 1;
+    %delay 10000, 0;
+    %set/v v010FED28_0, 0, 1;
+    %delay 10000, 0;
+    %movi 8, 204, 8;
+    %set/v v010FEBC8_0, 8, 8;
+    %movi 8, 51, 8;
+    %set/v v010FEC20_0, 8, 8;
+    %delay 50000, 0;
+    %vpi_call 2 38 "$finish";
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "8bit_twin_tb.v";
+    "8bit_twin.v";

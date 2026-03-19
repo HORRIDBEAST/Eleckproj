@@ -1,0 +1,144 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 12;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0129D5F0 .scope module, "USR_tb" "USR_tb" 2 3;
+ .timescale -9 -12;
+v01298C10_0 .var "PI", 4 0;
+v01298C68_0 .net "PO", 4 0, v01298548_0; 1 drivers
+v0129B6B8_0 .var "SI", 0 0;
+v0129B710_0 .net "SO", 0 0, L_01100F58; 1 drivers
+v01100B90_0 .var "clk", 0 0;
+v01100D48_0 .var "rst", 0 0;
+v01100BE8_0 .var "sel", 1 0;
+S_0129D9A8 .scope module, "uut" "USR" 2 11, 3 1, S_0129D5F0;
+ .timescale -9 -12;
+v012984F0_0 .net "PI", 4 0, v01298C10_0; 1 drivers
+v01298548_0 .var "PO", 4 0;
+v01293238_0 .net "SI", 0 0, v0129B6B8_0; 1 drivers
+v01293290_0 .alias "SO", 0 0, v0129B710_0;
+v012932E8_0 .net *"_s0", 1 0, C4<01>; 1 drivers
+v01103268_0 .net *"_s2", 0 0, L_01100A88; 1 drivers
+v011032C0_0 .net *"_s5", 0 0, L_01100FB0; 1 drivers
+v01103318_0 .net *"_s7", 0 0, L_01101008; 1 drivers
+v01298B08_0 .net "clk", 0 0, v01100B90_0; 1 drivers
+v01298B60_0 .net "rst", 0 0, v01100D48_0; 1 drivers
+v01298BB8_0 .net "sel", 1 0, v01100BE8_0; 1 drivers
+E_0129E3B8/0 .event negedge, v01298B60_0;
+E_0129E3B8/1 .event posedge, v01298B08_0;
+E_0129E3B8 .event/or E_0129E3B8/0, E_0129E3B8/1;
+L_01100A88 .cmp/eq 2, v01100BE8_0, C4<01>;
+L_01100FB0 .part v01298548_0, 4, 1;
+L_01101008 .part v01298548_0, 0, 1;
+L_01100F58 .functor MUXZ 1, L_01101008, L_01100FB0, L_01100A88, C4<>;
+    .scope S_0129D9A8;
+T_0 ;
+    %wait E_0129E3B8;
+    %load/v 8, v01298B60_0, 1;
+    %inv 8, 1;
+    %jmp/0xz  T_0.0, 8;
+    %ix/load 0, 5, 0;
+    %assign/v0 v01298548_0, 0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/v 8, v01298BB8_0, 2;
+    %cmpi/u 8, 0, 2;
+    %jmp/1 T_0.2, 6;
+    %cmpi/u 8, 1, 2;
+    %jmp/1 T_0.3, 6;
+    %cmpi/u 8, 2, 2;
+    %jmp/1 T_0.4, 6;
+    %cmpi/u 8, 3, 2;
+    %jmp/1 T_0.5, 6;
+    %ix/load 0, 5, 0;
+    %assign/v0 v01298548_0, 0, 0;
+    %jmp T_0.7;
+T_0.2 ;
+    %load/v 8, v01298548_0, 5;
+    %ix/load 0, 5, 0;
+    %assign/v0 v01298548_0, 0, 8;
+    %jmp T_0.7;
+T_0.3 ;
+    %load/v 8, v01293238_0, 1;
+    %load/v 9, v01298548_0, 4; Select 4 out of 5 bits
+    %ix/load 0, 5, 0;
+    %assign/v0 v01298548_0, 0, 8;
+    %jmp T_0.7;
+T_0.4 ;
+    %ix/load 1, 1, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_0.8, 4;
+    %load/x1p 13, v01298548_0, 4;
+    %jmp T_0.9;
+T_0.8 ;
+    %mov 13, 2, 4;
+T_0.9 ;
+    %mov 8, 13, 4; Move signal select into place
+    %load/v 12, v01293238_0, 1;
+    %ix/load 0, 5, 0;
+    %assign/v0 v01298548_0, 0, 8;
+    %jmp T_0.7;
+T_0.5 ;
+    %load/v 8, v012984F0_0, 5;
+    %ix/load 0, 5, 0;
+    %assign/v0 v01298548_0, 0, 8;
+    %jmp T_0.7;
+T_0.7 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0129D5F0;
+T_1 ;
+    %delay 5000, 0;
+    %load/v 8, v01100B90_0, 1;
+    %inv 8, 1;
+    %set/v v01100B90_0, 8, 1;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_0129D5F0;
+T_2 ;
+    %vpi_call 2 17 "$dumpfile", "USR_tb.vcd";
+    %vpi_call 2 18 "$dumpvars", 1'sb0, S_0129D5F0;
+    %vpi_call 2 19 "$monitor", "Time=%0t | sel=%b, SI=%b, PI=%b | PO=%b, SO=%b", $time, v01100BE8_0, v0129B6B8_0, v01298C10_0, v01298C68_0, v0129B710_0;
+    %set/v v01100B90_0, 0, 1;
+    %set/v v01100D48_0, 0, 1;
+    %set/v v0129B6B8_0, 0, 1;
+    %set/v v01100BE8_0, 0, 2;
+    %movi 8, 21, 5;
+    %set/v v01298C10_0, 8, 5;
+    %delay 5000, 0;
+    %set/v v01100D48_0, 1, 1;
+    %delay 5000, 0;
+    %set/v v01100D48_0, 0, 1;
+    %delay 10000, 0;
+    %set/v v01100BE8_0, 1, 2;
+    %delay 10000, 0;
+    %set/v v01100BE8_0, 0, 2;
+    %delay 10000, 0;
+    %movi 8, 1, 2;
+    %set/v v01100BE8_0, 8, 2;
+    %set/v v0129B6B8_0, 1, 1;
+    %delay 10000, 0;
+    %movi 8, 1, 2;
+    %set/v v01100BE8_0, 8, 2;
+    %set/v v0129B6B8_0, 0, 1;
+    %delay 10000, 0;
+    %movi 8, 2, 2;
+    %set/v v01100BE8_0, 8, 2;
+    %set/v v0129B6B8_0, 1, 1;
+    %delay 10000, 0;
+    %movi 8, 2, 2;
+    %set/v v01100BE8_0, 8, 2;
+    %set/v v0129B6B8_0, 0, 1;
+    %delay 20000, 0;
+    %vpi_call 2 42 "$finish";
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "Universal_Shift_Reg_tb.v";
+    "Universal_Shift_Reb.v";
